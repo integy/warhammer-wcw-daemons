@@ -116,6 +116,7 @@ code{background:#0d1626;border:1px solid var(--line);border-radius:5px;padding:1
     <a href="#table">對手表</a>
     <a href="#players">逐人分析</a>
     <a href="#method">資料來源</a>
+    <a href="card.html">打印版速查卡 ↗</a>
   </nav>
 
   <section id="card">
@@ -217,9 +218,9 @@ document.getElementById("cardTable").innerHTML =
   `<table><thead><tr><th>Tier</th><th>選手 / 隊伍</th><th>FD</th><th>風格（實際 Legion）</th><th>Elo</th><th>近 15 場</th></tr></thead><tbody>${cardRows}</tbody></table>`;
 
 // ---- meta ----
-const top = D.factions.slice(0, 15);
-const maxF = top[0].count;
-document.getElementById("factionBars").innerHTML = top.map(f => `
+const topF = D.factions.slice(0, 15);
+const maxF = topF[0].count;
+document.getElementById("factionBars").innerHTML = topF.map(f => `
   <li class="${f.name === "Chaos Daemons" ? "me" : ""}">
     <div><div class="bar"><i style="width:${(f.count/maxF*100).toFixed(1)}%"></i></div>
       <span style="font-size:11.5px">${esc(f.name === "?" ? "（未填軍種）" : f.name)}</span></div>
