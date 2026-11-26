@@ -1,0 +1,122 @@
+{
+ "Kody Drake": {
+  "tier": "S",
+  "style": "Plague Legion 耐久 + Creations of Bile 切換",
+  "note": "全組 teams Elo 最高（2469 / 44 場），近期 8 勝 2 負。Hutber 上 Daemons 打咗 41 場，但近 8 場有一半用 Heretic Astartes（Creations of Bile），即係佢會按對手揀軍。Plague Legion 令佢擅長守點、磨血、慢慢拉開 VP。",
+  "watch": "對上要預佢唔會同你拼速度：守住中路、用 deep strike 迫佢分散，唔好被拖入 4 回合後的消耗戰。"
+ },
+ "Blair Macdonald": {
+  "tier": "S",
+  "style": "Blood Legion 純種衝鋒（近 5 場全用）",
+  "note": "近 5 場 Blood Legion 全部入前二（Geekfest #2、Capital City #2、夏季賽連續兩個 #1），近期 9 勝 1 負，係全組最熱手之一。加拿大東岸圈。",
+  "watch": "Blood Legion 首兩回合爆發最強；擺位要留 12 吋以上，用 screen + 反衝鋒單位接佢第一波。"
+ },
+ "Bojan Donevski": {
+  "tier": "A",
+  "style": "資料極少（Hutber 只有 4 場賽事）",
+  "note": "teams Elo 2411 但只有 16 場，樣本細；Hutber 完全冇 Daemons 紀錄（只有 1 場 Orks）。報名用 Daemons 但可能係新換軍，或者比賽紀錄未上載。",
+  "watch": "唔可以用歷史推斷；當成未知數，準備通用鏡像開局（screen + 中央控制）最穩。"
+ },
+ "David T.": {
+  "tier": "A",
+  "style": "主軍 Thousand Sons（Rubricae Phalanx 151 場）",
+  "note": "small Elo 2070 / 124 場，係全組最有比賽量嘅人之一。Daemons 只佔佢 17 場歷史，屬「換口味」而非專精。",
+  "watch": "經驗豐富但 Daemons 操作深度有限：多用佢唔熟嘅 Daemons 規則位（Deep Strike 距離、Aura 疊加）測試。"
+ },
+ "Lucas Wilson": {
+  "tier": "A",
+  "style": "Take and Hold 穩陣派，近期主用 CSM / EC",
+  "note": "teams Elo 2257 / 20 場，Daemons 歷史 37 場有底子，但近 8 場已轉 Heretic Astartes 與 Emperor's Children。",
+  "watch": "回流 Daemons 通常打守點型；留意佢會唔會用 CSM 嘅 Chaos 單位混編思路（保守、控圖）。"
+ },
+ "Niklas Fritschen": {
+  "tier": "A",
+  "style": "Legion of Excess（Slaanesh 機動）",
+  "note": "89 場 teams 賽事、打過 WTC 2026（#149，4-0-3）。Daemons 146 場，近 8 場一半用 Legion of Excess，最近一場轉 Custodes（#65）。",
+  "watch": "Legion of Excess 機動性高、可以連續 redeploy；要小心側翼被繞，同時準備應對 Custodes 版本。"
+ },
+ "Mike Pestilens": {
+  "tier": "A",
+  "style": "Blood Legion / Cavalcade of Chaos 彈性派",
+  "note": "66 場 teams、69 場 Daemons；NOVA Open GT 5-0-1、The Challengers Cup 5-0-1。會按 meta 換 Legion，屬老練型。",
+  "watch": "佢會針對你嘅軍種揀 Legion，唔好被第一回合嘅部署騙到；保留一隊反 deep strike 預備。"
+ },
+ "David Coderch": {
+  "tier": "A",
+  "style": "100% Daemons 專精（103 場全部 Daemons）",
+  "note": "巴塞隆拿本地選手（AEPDA），近 5 場全部 Blood Legion 並入前 10（#2 / #3 / #9）。係全組最「純」嘅 Daemons 玩家，規則細節最熟。",
+  "watch": "鏡像對局嘅規則戰會輸：任何灰色地帶（Aura 覆蓋、Deep Strike 9 吋、charge 距離）佢都會用到最盡，自己有疑問即場問裁判。"
+ },
+ "Aleix Moya": {
+  "tier": "A",
+  "style": "Blood Legion 常客，83 場 Daemons",
+  "note": "71 場 teams Elo 2213；GT BUNKERHAMMER #10（5-0-0）、BCN 2026 #48。西班牙本地賽常客，Blood Legion 用得多。",
+  "watch": "本地場地熟悉、開局快；要提防佢用場地障礙做 charge 保護。"
+ },
+ "Tristan Spencer": {
+  "tier": "B+",
+  "style": "Blood Legion（近 4 場全用），近期最熱",
+  "note": "Kent Major #4（5-0-1）、Kent Knights RTT #3、10 月小型賽 #1，近期 9 勝 1 負。但 Daemons 只 12 場歷史，屬新轉會。",
+  "watch": "勢頭好但深度淺：佢嘅 list 可能係網上抄嘅最佳配置，對非常規打法應變較弱。"
+ },
+ "Christopher Langton": {
+  "tier": "B+",
+  "style": "Legion of Excess（128 場 Daemons，全組最多之一）",
+  "note": "83 場 teams；WTC 2026 #75（5-0-2）、WTC Warmaster GT #25（5-0-1）、Manchester Super-Major #10。大賽經驗足，Priority Assets FD。",
+  "watch": "優先任務型打法：會主動搶 objective 而唔係拼殺；要計算 VP 節奏多過殺傷。"
+ },
+ "Scott Nagao": {
+  "tier": "B",
+  "style": "Nurgle 系（Death Guard → Plague Legion）",
+  "note": "主軍 Death Guard 49 場，Daemons 只 6 場，但最近一場 The Challengers Cup 用 Plague Legion 攞 #5（6-0-0），一戰證明用得順。",
+  "watch": "耐久消耗流：唔會急，會用 4-5 回合慢慢拉開；要準備早期搶分，唔好打成持久戰。"
+ },
+ "Derrick Ramsey": {
+  "tier": "B",
+  "style": "Plague Legion（45 場 Daemons）",
+  "note": "small Elo 2045 / 28 場；近三場 GT 分別 #3 / #4 / #4，West Texas Teams 4-0-0。teams Elo 只有 7 場樣本，實際水平比數字高。",
+  "watch": "穩定型、少失誤；對局關鍵係你先搶到 central objective，迫使佢離開 cover。"
+ },
+ "Shane Watts": {
+  "tier": "B",
+  "style": "Plague Legion 副修（主軍 Votann 111 場）",
+  "note": "small Elo 1862 / 111 場，係比賽量最多嘅人之一，但主軍係 Leagues of Votann；Daemons 21 場，近期全用 Plague Legion。",
+  "watch": "經驗型選手、唔會亂衝；但 Daemons 熟練度唔及 Votann，可以用非常規 Deep Strike 位打亂佢。"
+ },
+ "Lara Silva": {
+  "tier": "C+",
+  "style": "Legion of Excess / Scintillating Legion",
+  "note": "108 場 Daemons、89 場 small 賽事，屬老手但 Elo 一直中游（1402 teams / 1729 small）。近期試 Scintillating Legion（Tzeentch 射擊）。",
+  "watch": "打得多但轉換頻密，穩定性一般；對局中留意佢揀 Scintillating 就係想拉開距離射擊。"
+ },
+ "Matej \"Amon\" Rek": {
+  "tier": "C+",
+  "style": "Legion of Excess（捷克）",
+  "note": "PragueGT Fall 2026 #18（5-0-0）、Leoben Autumn Sprint #5（5-0-0），近期 7 勝 3 負；但 WTC 2026 只得 #332（1-2-5），大賽抗壓一般。",
+  "watch": "小型賽狀態好、大賽易失分；如果 pair 到佢係好簽，唔好浪費。"
+ },
+ "Jorge Urbina": {
+  "tier": "C",
+  "style": "主軍 Thousand Sons，Daemons 副（22 場）",
+  "note": "Team Chile 40K。small Elo 1606 / 64 場，近 8 場多數用 TSons，只有一場 Lords of the Warp。",
+  "watch": "Daemons 熟練度低，係配對上偏軟嘅目標；用機動性壓迫佢唔熟嘅 Aura 玩法。"
+ },
+ "Panos Papadopoulos": {
+  "tier": "C",
+  "style": "多軍輪換（GSC / TSons / Deathwatch），Daemons 21 場",
+  "note": "希臘 IDAS，Balkan Team Championship 常客。teams Elo 1024 / 22 場偏低，small 1691 / 27 場；Daemons 用 Lords of the Warp 為主。",
+  "watch": "多軍種令佢每套都唔精；鏡像上你嘅 Daemons 深度應該佔優。"
+ },
+ "Eric Leung": {
+  "tier": "—",
+  "style": "自己（Team Hong Kong 40K）",
+  "note": "本頁其餘 19 人就係你 WCW 嘅 Daemons 對手；你自己報 Take and Hold，Hutber small Elo 1930 / 18 場，Daemons 5 場（Legion of Excess），近期主用 Dark Angels。",
+  "watch": "自己：mirror 準備以 Blood Legion / Plague Legion 兩種最常見配置為主。"
+ },
+ "Sam Hellman": {
+  "tier": "C",
+  "style": "Plague Legion 純種（121 場全 Daemons）",
+  "note": "small Elo 1575 / 95 場，係全組 Daemons 場次最多嘅人（121 場，近 7 場全 Plague Legion）。經驗型選手但勝率一般。",
+  "watch": "極熟 Plague Legion 規則，但應變單一；用完全唔同嘅節奏（快攻搶分）可以打亂。"
+ }
+}

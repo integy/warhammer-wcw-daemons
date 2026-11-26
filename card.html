@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8" />
+<title>WCW 2026 · Daemons 速查卡</title>
+<style>
+:root{--bg:#0a0d14;--panel:#111827;--line:#1e2a3d;--txt:#e6edf7;--dim:#8b9bb4;
+  --cyan:#38e1ff;--green:#3ddc97;--amber:#ffb03a;--red:#ff5f6d;--violet:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1240px;background:var(--bg);color:var(--txt);
+  font:14px/1.45 -apple-system,"SF Pro TC","PingFang HK","Noto Sans TC",sans-serif;padding:34px 38px 30px}
+.hdr{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:16px}
+.kicker{color:var(--cyan);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
+h1{font-size:30px;margin-top:6px;letter-spacing:.01em}
+h1 small{font-size:15px;color:var(--dim);font-weight:400;margin-left:8px}
+.figure{text-align:right;color:var(--dim);font-size:12px;line-height:1.6}
+.figure b{display:block;font-size:26px;color:var(--txt)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--dim);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid var(--line);padding:8px 9px;white-space:nowrap}
+td{padding:7px 9px;border-bottom:1px solid #16202f;vertical-align:middle}
+tr:nth-child(even) td{background:#0d1420}
+.tier{display:inline-block;min-width:24px;text-align:center;border-radius:5px;padding:1px 6px;font-size:11.5px;font-weight:700}
+.S{background:#3a1220;color:#ff7b8a}.A{background:#3a2410;color:#ffb03a}
+.Bp{background:#12351f;color:#3ddc97}.B{background:#102a33;color:#59c7dd}
+.Cp{background:#1b2436;color:#9fb0c8}.C{background:#1b2030;color:#8b9bb4}
+.nm{font-weight:600;font-size:13.5px}
+.tm{color:var(--dim);font-size:11.5px}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.fd{color:var(--violet);font-size:11.5px;white-space:nowrap}
+.win{color:var(--green)}.lose{color:var(--red)}
+.footer{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.footer h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
+.footer li{font-size:12.5px;color:#cfdaea;margin-bottom:4px;list-style:none}
+.footer li b{color:var(--amber)}
+.src{color:#5f6f86;font-size:10.5px;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <div class="kicker">WCW 2026 · Barcelona · 12/03–12/06</div>
+    <h1>Chaos Daemons 速查卡<small>20 位選手 · 按 Elo 排序</small></h1>
+  </div>
+  <div class="figure" id="fig"></div>
+</div>
+
+<div id="table"></div>
+
+<div class="footer">
+  <div>
+    <h4>最需要準備的 5 人</h4>
+    <ul id="top5"></ul>
+  </div>
+  <div>
+    <h4>Legion 分佈（各人最近一場 Daemons）</h4>
+    <ul id="dets"></ul>
+  </div>
+</div>
+<div class="src">資料：BCP event ej81ECrIXoRh（1008 人）＋ Hutber Elo／賽事紀錄 · 建於 <span id="built"></span></div>
+
+<script src="data.js"></script>
+<script>
+const D = window.WCW_DATA;
+const tc = t => ({"S":"S","A":"A","B+":"Bp","B":"B","C+":"Cp","C":"C","—":"C"}[t] || "C");
+const eo = p => p.teams || p.small || p.global || null;
+const lab = p => p.teams ? "teams" : p.small ? "small" : "all-time";
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+document.getElementById("fig").innerHTML =
+  `<b>${D.event.count} / ${D.event.players}</b>${D.event.pct}% 全場 · 軍種第 ${D.event.rank}／${D.event.factionCount}`;
+
+document.getElementById("table").innerHTML = `<table>
+<thead><tr><th>Tier</th><th>選手</th><th>隊伍</th><th>FD</th><th>風格 / 實際 Legion</th><th class="num">Elo</th><th class="num">近 15 場</th></tr></thead>
+<tbody>${D.players.map(p => {
+  const e = eo(p);
+  return `<tr>
+   <td><span class="tier ${tc(p.tier)}">${p.tier}</span></td>
+   <td class="nm">${esc(p.name)}</td>
+   <td class="tm">${esc(p.team)}</td>
+   <td class="fd">${esc(p.fd)}</td>
+   <td>${esc(p.style)}</td>
+   <td class="num">${e ? e.rating : "—"}<div class="tm">${e ? lab(p) : ""}</div></td>
+   <td class="num"><span class="win">${p.recent.w}W</span>–<span class="lose">${p.recent.l}L</span></td>
+  </tr>`}).join("")}</tbody></table>`;
+
+const top5 = D.players.filter(p => ["S","A"].includes(p.tier)).slice(0, 5);
+document.getElementById("top5").innerHTML = top5.map((p, i) =>
+  `<li><b>${i+1}.</b> ${esc(p.name)}（${esc(p.team)}）— ${esc(p.style)}</li>`).join("");
+
+document.getElementById("dets").innerHTML = D.detachments.map(d =>
+  `<li>${esc(d.name)} — ${d.count} 人</li>`).join("");
+document.getElementById("built").textContent = D.built;
+</script>
+</body>
+</html>

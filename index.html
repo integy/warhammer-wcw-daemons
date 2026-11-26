@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WCW 2026 · Chaos Daemons 對手指南</title>
+<style>
+:root{
+  --bg:#0a0d14; --panel:#111827; --panel2:#0e1522; --line:#1e2a3d;
+  --txt:#e6edf7; --dim:#8b9bb4; --cyan:#38e1ff; --green:#3ddc97;
+  --amber:#ffb03a; --red:#ff5f6d; --violet:#a78bfa;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);
+  font:15px/1.55 -apple-system,"SF Pro TC","PingFang HK","Noto Sans TC",system-ui,sans-serif;}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 80px}
+header.top{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#0d1522,#0a0d14);
+  padding:26px 0 20px;margin-bottom:22px}
+.kicker{color:var(--cyan);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+h1{margin:0 0 6px;font-size:30px;letter-spacing:.01em}
+h1 span{color:var(--dim);font-weight:400;font-size:18px}
+.sub{color:var(--dim);font-size:14px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:104px}
+.stat b{display:block;font-size:20px;line-height:1.2}
+.stat small{color:var(--dim);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 26px}
+nav.jump a{background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:6px 14px;font-size:13px;color:var(--txt)}
+nav.jump a:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+section{margin:0 0 40px;scroll-margin-top:18px}
+h2{font-size:19px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h2 .tag{font-size:11px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;font-weight:500}
+.hint{color:var(--dim);font-size:13px;margin:0 0 14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+input[type=search]{flex:1 1 240px;background:#0a0f19;border:1px solid var(--line);border-radius:9px;
+  padding:9px 12px;color:var(--txt);font-size:14px;outline:none}
+input[type=search]:focus{border-color:var(--cyan)}
+.chip{background:#0a0f19;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;
+  color:var(--dim);cursor:pointer;user-select:none}
+.chip.on{border-color:var(--cyan);color:var(--cyan);background:#0d2430}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-weight:600;color:var(--dim);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:11px 12px;border-bottom:1px solid var(--line);background:var(--panel2);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid #16202f;vertical-align:top}
+tr.row{cursor:pointer}
+tr.row:hover{background:#0d1626}
+tr.row.open{background:#0d1f2c}
+.nm{font-weight:600}
+.tm{color:var(--dim);font-size:12.5px}
+.num{font-variant-numeric:tabular-nums}
+.tier{display:inline-block;min-width:26px;text-align:center;border-radius:6px;padding:1px 7px;font-size:12px;font-weight:700}
+.tier.S{background:#3a1220;color:#ff7b8a;border:1px solid #5c1c2b}
+.tier.A{background:#3a2410;color:#ffb03a;border:1px solid #5c3a15}
+.tier.Bp{background:#12351f;color:#3ddc97;border:1px solid #1d5232}
+.tier.B{background:#102a33;color:#59c7dd;border:1px solid #17414f}
+.tier.Cp{background:#1b2436;color:#9fb0c8;border:1px solid #2b3a52}
+.tier.C{background:#1b2030;color:#8b9bb4;border:1px solid #262f42}
+.tier.dash{background:#1b2030;color:#6f7f96;border:1px solid #262f42}
+.fd{font-size:12px;color:var(--violet)}
+.det{display:inline-block;background:#141d2c;border:1px solid #23304a;border-radius:6px;padding:1px 7px;
+  font-size:12px;color:#a9c3e6;margin:1px 4px 1px 0;white-space:nowrap}
+.wl{font-variant-numeric:tabular-nums;font-size:12.5px}
+.win{color:var(--green)}.lose{color:var(--red)}.draw{color:var(--amber)}
+.detail{background:#0a1220;border-bottom:1px solid #16202f;padding:0}
+.detail-in{padding:18px 20px 22px;display:grid;grid-template-columns:1.15fr 1fr;gap:26px}
+.detail h4{margin:0 0 8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.detail p{margin:0 0 10px;font-size:13.5px;color:#cfdaea}
+.detail .watch{border-left:3px solid var(--amber);padding-left:12px;color:#e8dcc6;font-size:13px}
+.ev{font-size:12.5px;color:#b9c8dd;margin:0 0 5px;font-variant-numeric:tabular-nums}
+.ev b{color:var(--txt);font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.bars{list-style:none;margin:0;padding:0}
+.bars li{display:grid;grid-template-columns:1fr 46px;align-items:center;gap:10px;margin-bottom:7px;font-size:13px}
+.bar{height:7px;border-radius:4px;background:#16202f;position:relative;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#1f6f8b,#38e1ff);border-radius:4px}
+.bars li.me .bar i{background:linear-gradient(90deg,#2b8f6a,#3ddc97)}
+.bars li.me{color:var(--green);font-weight:600}
+.bars .n{text-align:right;color:var(--dim);font-variant-numeric:tabular-nums}
+.cards{display:grid;grid-template-columns:1fr;gap:14px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;scroll-margin-top:18px}
+.pcard header{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:10px}
+.pcard h3{margin:0;font-size:17px}
+.pcard .meta{color:var(--dim);font-size:12.5px;margin-top:3px}
+.pcard .body{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+.pcard p{margin:0 0 10px;font-size:13.5px;color:#cfdaea}
+.pcard .watch{border-left:3px solid var(--amber);padding-left:12px;color:#e8dcc6}
+.pcard.hide{display:none}
+footer{color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);padding-top:18px}
+code{background:#0d1626;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12.5px}
+@media (max-width:880px){
+  .detail-in,.pcard .body,.grid2{grid-template-columns:1fr}
+  h1{font-size:23px}
+  table{font-size:12.5px}
+  th,td{padding:9px 8px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">WCW 2026 · Chaos Daemons 對手指南</div>
+    <h1>Chaos Daemons 速查 <span>／ 20 位選手．逐人分析</span></h1>
+    <div class="sub" id="sub"></div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="jump">
+    <a href="#card">速查卡</a>
+    <a href="#meta">全場分佈</a>
+    <a href="#table">對手表</a>
+    <a href="#players">逐人分析</a>
+    <a href="#method">資料來源</a>
+  </nav>
+
+  <section id="card">
+    <h2>速查卡 <span class="tag">排隊時用</span></h2>
+    <p class="hint">按 Elo 排序。Tier = 綜合威脅（Elo ＋ Daemons 場次深度）。<b>風格</b> 取佢最近幾場實際用的 Legion。</p>
+    <div class="panel"><div id="cardTable"></div></div>
+  </section>
+
+  <section id="meta">
+    <h2>全場分佈 <span class="tag">1008 人已報名</span></h2>
+    <p class="hint">資料：BCP 賽事 <code>ej81ECrIXoRh</code>（Barcelona，12 月 3–6 日）。</p>
+    <div class="grid2">
+      <div class="panel" style="padding:16px 18px">
+        <h4 style="margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)">軍種人數（前 15）</h4>
+        <ul class="bars" id="factionBars"></ul>
+      </div>
+      <div class="panel" style="padding:16px 18px">
+        <h4 style="margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)">Daemons 選手 Legion 分佈</h4>
+        <ul class="bars" id="detBars"></ul>
+        <p class="hint" style="margin-top:14px">以每人最近一場 Daemons 賽事為準（Hutber 紀錄，非 WCW list）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="table">
+    <h2>對手表 <span class="tag">可搜尋／篩選／排序</span></h2>
+    <p class="hint">點任何一行展開分析。Elo 取 Hutber 最高可用 scope（teams 優先，≥5 場）。</p>
+    <div class="panel">
+      <div class="toolbar">
+        <input id="q" type="search" placeholder="搜尋：名、隊、Legion、FD…" autocomplete="off" />
+        <span class="chip on" data-fd="all">全部</span>
+        <span class="chip" data-fd="Take and Hold">Take and Hold</span>
+        <span class="chip" data-fd="Purge the Foe">Purge the Foe</span>
+        <span class="chip" data-fd="Priority Assets">Priority Assets</span>
+        <span class="chip" data-fd="其他">其他 FD</span>
+      </div>
+      <div id="tableHolder"></div>
+    </div>
+  </section>
+
+  <section id="players">
+    <h2>逐人分析 <span class="tag">20 人</span></h2>
+    <p class="hint">每人：實際用過的 Legion、最近 6 場成績、近 15 場戰績、鏡像注意事項。</p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="method">
+    <h2>資料來源 / 方法</h2>
+    <div class="panel" style="padding:16px 18px">
+      <p class="hint" style="margin:0 0 10px">更新：<b id="built"></b></p>
+      <ul style="margin:0;padding-left:18px;color:#b9c8dd;font-size:13.5px;line-height:1.8">
+        <li>選手名單、隊伍、Force Disposition：BCP API <code>newprod-api.bestcoastpairings.com/v1/events/ej81ECrIXoRh/players?limit=5000</code>（1008 筆）。</li>
+        <li>Elo、賽事成績、實際 Legion：Hutber <code>apistats.hutber.com/graphql</code>（免登入）。</li>
+        <li>Army list 內容：BCP 需要登入才看 <code>/list/&lt;id&gt;</code>，所以本頁<b>不</b>包含 box-by-box；Legion 取自佢最近實際出賽紀錄。</li>
+        <li>Tier 規則：Elo ≥2350 或（Elo ≥2200 且 Daemons ≥40 場）＝S；≥2100＝A；≥1900 或 Daemons ≥60 場＝B；其餘 C。</li>
+        <li>Daemons 場次 = Hutber 上以 Legiones Daemonica 出賽的次數；"0 場" 代表新換軍或紀錄未上載。</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Built by Hermes · 資料每日可重建（<code>build.py</code> ＋ Hutber / BCP）· 只供配對參考，唔代表正式預測。
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+const D = window.WCW_DATA;
+const tierClass = t => ({S:"S", A:"A", "B+":"Bp", B:"B", "C+":"Cp", C:"C", "—":"dash"}[t] || "dash");
+const eloOf = p => p.teams || p.small || p.global || null;
+const eloLabel = p => (p.teams ? "teams" : p.small ? "small" : p.global ? "all-time" : "—");
+const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const wl = r => `<span class="wl"><span class="win">${r.w}W</span>–<span class="lose">${r.l}L</span>${r.d?`–<span class="draw">${r.d}D</span>`:""}</span>`;
+
+document.getElementById("sub").textContent =
+  `${D.event.place} · ${D.event.dates} · ${D.event.players} 人報名 · Chaos Daemons ${D.event.count} 人（${D.event.pct}%，排第 ${D.event.rank}／${D.event.factionCount}）`;
+
+document.getElementById("stats").innerHTML = [
+  ["Daemons 選手", D.event.count],
+  ["佔全場", D.event.pct + "%"],
+  ["軍種排名", `#${D.event.rank}/${D.event.factionCount}`],
+  ["主要 Legion", D.detachments[0].name],
+  ["Tier S/A", D.players.filter(p => ["S","A"].includes(p.tier)).length + " 人"],
+].map(([k,v]) => `<div class="stat"><b>${v}</b><small>${k}</small></div>`).join("");
+
+// ---- quick card ----
+const cardRows = D.players.map(p => {
+  const e = eloOf(p);
+  return `<tr class="row" onclick="location.hash='p-${p.id}'">
+    <td><span class="tier ${tierClass(p.tier)}">${p.tier}</span></td>
+    <td><div class="nm">${esc(p.name)}</div><div class="tm">${esc(p.team)}</div></td>
+    <td class="fd">${esc(p.fd)}</td>
+    <td>${esc(p.style)}</td>
+    <td class="num">${e ? e.rating : "—"}<span class="tm"> ${e ? eloLabel(p) : ""}</span></td>
+    <td>${wl(p.recent)}</td>
+  </tr>`;
+}).join("");
+document.getElementById("cardTable").innerHTML =
+  `<table><thead><tr><th>Tier</th><th>選手 / 隊伍</th><th>FD</th><th>風格（實際 Legion）</th><th>Elo</th><th>近 15 場</th></tr></thead><tbody>${cardRows}</tbody></table>`;
+
+// ---- meta ----
+const top = D.factions.slice(0, 15);
+const maxF = top[0].count;
+document.getElementById("factionBars").innerHTML = top.map(f => `
+  <li class="${f.name === "Chaos Daemons" ? "me" : ""}">
+    <div><div class="bar"><i style="width:${(f.count/maxF*100).toFixed(1)}%"></i></div>
+      <span style="font-size:11.5px">${esc(f.name === "?" ? "（未填軍種）" : f.name)}</span></div>
+    <span class="n">${f.count}</span></li>`).join("");
+const maxD = Math.max(...D.detachments.map(d => d.count));
+document.getElementById("detBars").innerHTML = D.detachments.map(d => `
+  <li><div><div class="bar"><i style="width:${(d.count/maxD*100).toFixed(1)}%"></i></div>
+    <span style="font-size:11.5px">${esc(d.name)}</span></div><span class="n">${d.count}</span></li>`).join("");
+
+// ---- full table ----
+function detail(p){
+  const ev = p.events.map(e => `<p class="ev">${esc(e.date)} · <b>${esc(e.event)}</b><br>
+      #${esc(e.standing ?? "—")} · ${esc(e.record ?? "")} · ${esc(e.faction ?? "—")}${e.detachment ? " / " + esc(e.detachment) : ""}</p>`).join("");
+  const elo = [p.teams && `teams ${p.teams.rating}（${p.teams.games}g）`,
+               p.small && `small ${p.small.rating}（${p.small.games}g）`,
+               p.dataslate && `dataslate ${p.dataslate.rating}`].filter(Boolean).map(esc).join(" · ");
+  return `<tr class="detail"><td colspan="7"><div class="detail-in">
+    <div>
+      <h4>分析</h4>
+      <p>${esc(p.note)}</p>
+      <p class="watch">${esc(p.watch)}</p>
+      <h4 style="margin-top:14px">Elo 快照</h4>
+      <p class="ev">${elo || "無 ≥5 場樣本"}</p>
+    </div>
+    <div>
+      <h4>最近賽事（Hutber）</h4>
+      ${ev || '<p class="ev">無紀錄</p>'}
+      <h4 style="margin-top:12px">常用軍種</h4>
+      <p class="ev">${(p.usual||[]).map(u => `${esc(u.name)} ${u.count}`).join(" · ") || "—"}</p>
+    </div>
+  </div></td></tr>`;
+}
+let sortKey = "elo", filterFd = "all", q = "";
+function renderTable(){
+  const rows = D.players.filter(p => {
+    if (filterFd !== "all") {
+      if (filterFd === "其他") { if (["Take and Hold","Purge the Foe","Priority Assets"].includes(p.fd)) return false; }
+      else if (p.fd !== filterFd) return false;
+    }
+    if (!q) return true;
+    const hay = [p.name, p.team, p.fd, p.style, p.note, p.watch, ...(p.detachments||[]).map(d=>d.name)].join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+  rows.sort((a,b) => sortKey === "name"
+    ? a.name.localeCompare(b.name)
+    : (eloOf(b)?.rating || 0) - (eloOf(a)?.rating || 0));
+  const body = rows.map(p => {
+    const e = eloOf(p);
+    return `<tr class="row" data-id="${p.id}" onclick="toggle(this)">
+      <td><span class="tier ${tierClass(p.tier)}">${p.tier}</span></td>
+      <td><div class="nm">${esc(p.name)}</div><div class="tm">${esc(p.team)}</div>
+          <div class="tm">${esc(p.group)}</div></td>
+      <td class="fd">${esc(p.fd)}</td>
+      <td>${(p.detachments||[]).map(d=>`<span class="det">${esc(d.name)} ×${d.count}</span>`).join("") || '<span class="tm">—</span>'}</td>
+      <td class="num">${e ? e.rating : "—"}<div class="tm">${e ? eloLabel(p)+" · "+e.games+"g" : ""}</div></td>
+      <td class="num">${p.daemonsEvents}/${p.totalEvents}<div class="tm">Daemons/總場</div></td>
+      <td>${wl(p.recent)}</td>
+    </tr>`;
+  }).join("");
+  document.getElementById("tableHolder").innerHTML = `<table>
+    <thead><tr>
+      <th>Tier</th><th>選手 / 隊伍 / 組別</th><th>FD</th><th>實際 Legion</th><th>Elo</th><th>Daemons 場次</th><th>近 15 場</th>
+    </tr></thead><tbody>${body || '<tr><td colspan="7" style="color:#8b9bb4;padding:20px">無符合條件的選手</td></tr>'}</tbody></table>`;
+}
+window.toggle = (tr) => {
+  const next = tr.nextElementSibling;
+  if (next && next.classList.contains("detail")) { next.remove(); tr.classList.remove("open"); return; }
+  const p = D.players.find(x => x.id === tr.dataset.id);
+  tr.insertAdjacentHTML("afterend", detail(p));
+  tr.classList.add("open");
+};
+document.getElementById("q").addEventListener("input", e => { q = e.target.value.trim().toLowerCase(); renderTable(); });
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("on"));
+  c.classList.add("on"); filterFd = c.dataset.fd; renderTable();
+}));
+renderTable();
+
+// ---- cards ----
+document.getElementById("cards").innerHTML = D.players.map(p => {
+  const e = eloOf(p);
+  const ev = p.events.slice(0,4).map(x => `<p class="ev">${esc(x.date)} · ${esc(x.event)}<br>
+    #${esc(x.standing ?? "—")} · ${esc(x.record ?? "")} · ${esc(x.detachment || x.faction || "")}</p>`).join("");
+  return `<article class="pcard" id="p-${p.id}">
+    <header>
+      <div>
+        <h3>${esc(p.name)} <span class="tier ${tierClass(p.tier)}">${p.tier}</span></h3>
+        <div class="meta">${esc(p.team)} · ${esc(p.group)} · FD <span class="fd">${esc(p.fd)}</span></div>
+      </div>
+      <div style="text-align:right">
+        <div class="num" style="font-size:19px;font-weight:700">${e ? e.rating : "—"}</div>
+        <div class="tm">${e ? eloLabel(p) + " Elo · " + e.games + " 場" : "無樣本"}</div>
+      </div>
+    </header>
+    <div class="body">
+      <div>
+        <p>${esc(p.note)}</p>
+        <p class="watch">${esc(p.watch)}</p>
+        <p class="ev" style="margin-top:10px">近 15 場：${wl(p.recent)}　·　Daemons ${p.daemonsEvents}/${p.totalEvents} 場</p>
+      </div>
+      <div>
+        <div style="margin-bottom:8px">${(p.detachments||[]).map(d=>`<span class="det">${esc(d.name)} ×${d.count}</span>`).join("") || '<span class="tm">近期無 Daemons 紀錄</span>'}</div>
+        ${ev}
+      </div>
+    </div>
+  </article>`;
+}).join("");
+document.getElementById("built").textContent = D.built;
+</script>
+</body>
+</html>
