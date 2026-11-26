@@ -1,96 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-<meta charset="utf-8" />
-<title>WCW 2026 · Daemons 速查卡</title>
-<style>
-:root{--bg:#0a0d14;--panel:#111827;--line:#1e2a3d;--txt:#e6edf7;--dim:#8b9bb4;
-  --cyan:#38e1ff;--green:#3ddc97;--amber:#ffb03a;--red:#ff5f6d;--violet:#a78bfa}
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:1240px;background:var(--bg);color:var(--txt);
-  font:14px/1.45 -apple-system,"SF Pro TC","PingFang HK","Noto Sans TC",sans-serif;padding:34px 38px 30px}
-.hdr{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:16px}
-.kicker{color:var(--cyan);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
-h1{font-size:30px;margin-top:6px;letter-spacing:.01em}
-h1 small{font-size:15px;color:var(--dim);font-weight:400;margin-left:8px}
-.figure{text-align:right;color:var(--dim);font-size:12px;line-height:1.6}
-.figure b{display:block;font-size:26px;color:var(--txt)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;color:var(--dim);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
-  border-bottom:1px solid var(--line);padding:8px 9px;white-space:nowrap}
-td{padding:7px 9px;border-bottom:1px solid #16202f;vertical-align:middle}
-tr:nth-child(even) td{background:#0d1420}
-.tier{display:inline-block;min-width:24px;text-align:center;border-radius:5px;padding:1px 6px;font-size:11.5px;font-weight:700}
-.S{background:#3a1220;color:#ff7b8a}.A{background:#3a2410;color:#ffb03a}
-.Bp{background:#12351f;color:#3ddc97}.B{background:#102a33;color:#59c7dd}
-.Cp{background:#1b2436;color:#9fb0c8}.C{background:#1b2030;color:#8b9bb4}
-.nm{font-weight:600;font-size:13.5px}
-.tm{color:var(--dim);font-size:11.5px}
-.num{font-variant-numeric:tabular-nums;text-align:right}
-.fd{color:var(--violet);font-size:11.5px;white-space:nowrap}
-.win{color:var(--green)}.lose{color:var(--red)}
-.footer{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
-.footer h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:7px}
-.footer li{font-size:12.5px;color:#cfdaea;margin-bottom:4px;list-style:none}
-.footer li b{color:var(--amber)}
-.src{color:#5f6f86;font-size:10.5px;margin-top:14px}
-</style>
-</head>
-<body>
-<div class="hdr">
-  <div>
-    <div class="kicker">WCW 2026 · Barcelona · 12/03–12/06</div>
-    <h1>Chaos Daemons 速查卡<small>20 位選手 · 按 Elo 排序</small></h1>
-  </div>
-  <div class="figure" id="fig"></div>
-</div>
-
-<div id="table"></div>
-
-<div class="footer">
-  <div>
-    <h4>最需要準備的 5 人</h4>
-    <ul id="top5"></ul>
-  </div>
-  <div>
-    <h4>Legion 分佈（各人最近一場 Daemons）</h4>
-    <ul id="dets"></ul>
-  </div>
-</div>
-<div class="src">資料：BCP event ej81ECrIXoRh（1008 人）＋ Hutber Elo／賽事紀錄 · 建於 <span id="built"></span></div>
-
-<script src="data.js"></script>
-<script>
-const D = window.WCW_DATA;
-const tc = t => ({"S":"S","A":"A","B+":"Bp","B":"B","C+":"Cp","C":"C","—":"C"}[t] || "C");
-const eo = p => p.teams || p.small || p.global || null;
-const lab = p => p.teams ? "teams" : p.small ? "small" : "all-time";
-const esc = s => String(s ?? "").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
-
-document.getElementById("fig").innerHTML =
-  `<b>${D.event.count} / ${D.event.players}</b>${D.event.pct}% 全場 · 軍種第 ${D.event.rank}／${D.event.factionCount}`;
-
-document.getElementById("table").innerHTML = `<table>
-<thead><tr><th>Tier</th><th>選手</th><th>隊伍</th><th>FD</th><th>風格 / 實際 Legion</th><th class="num">Elo</th><th class="num">近 15 場</th></tr></thead>
-<tbody>${D.players.map(p => {
-  const e = eo(p);
-  return `<tr>
-   <td><span class="tier ${tc(p.tier)}">${p.tier}</span></td>
-   <td class="nm">${esc(p.name)}</td>
-   <td class="tm">${esc(p.team)}</td>
-   <td class="fd">${esc(p.fd)}</td>
-   <td>${esc(p.style)}</td>
-   <td class="num">${e ? e.rating : "—"}<div class="tm">${e ? lab(p) : ""}</div></td>
-   <td class="num"><span class="win">${p.recent.w}W</span>–<span class="lose">${p.recent.l}L</span></td>
-  </tr>`}).join("")}</tbody></table>`;
-
-const top5 = D.players.filter(p => ["S","A"].includes(p.tier)).slice(0, 5);
-document.getElementById("top5").innerHTML = top5.map((p, i) =>
-  `<li><b>${i+1}.</b> ${esc(p.name)}（${esc(p.team)}）— ${esc(p.style)}</li>`).join("");
-
-document.getElementById("dets").innerHTML = D.detachments.map(d =>
-  `<li>${esc(d.name)} — ${d.count} 人</li>`).join("");
-document.getElementById("built").textContent = D.built;
-</script>
-</body>
-</html>
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 8mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang HK", sans-serif; margin:0; color:#111; }
+h1 { font-size: 19pt; margin:0 0 2mm; }
+.sub { font-size:8.5pt; color:#555; margin:0 0 3mm; }
+.wrap { columns: 3; column-gap: 4.5mm; }
+.blk { break-inside: avoid; margin: 0 0 3.6mm; border-left: 2px solid #b02020; padding-left: 2mm; }
+h3 { font-size: 12.2pt; margin:0 0 .6mm; color:#b02020; }
+.n { font-weight:400; color:#888; font-size:7pt; }
+.nm { font-size: 9.6pt; margin:0 0 .7mm; color:#222; line-height:1.25; }
+.nt { font-size: 9.4pt; margin:0; color:#444; line-height:1.28; }
+.mine { background:#f6f6f6; border:1px solid #ccc; padding:2mm 3mm; font-size:9.8pt; margin:0 0 3mm; line-height:1.35; }
+b { color:#000; }
+</style></head><body>
+<h1>WCW 2026 · Group 9 速查卡（62 對手）</h1>
+<div class="mine"><b>你</b> Daemonic Incursion｜Take and Hold｜1,995：Skullmaster 85 · Bloodcrushers 210 · Bloodthirster 320×2 · Karanak 70 · Rendmaster 160/160/180 · Skarbrand 330 · Flesh Hounds 80×2<br>
+<b>牌型</b>：無射擊、12 datasheet。贏 = 近戰飽和 + Karanak 獵 character + Rendmaster 疊傷。輸 = 純射擊 castle（T'au / Aeldari / LoC Daemons / Caladius）。<b>口訣</b>：唔好喺 open 位出現。</div>
+<div class="wrap"><div class="blk"><h3>WE <span class="n">8</span></h3><p class="nm">Sam Dickinson (417) · Jack Harpster (789) · Peter Duff (853) · Vidente Elthar (928) · Gabriel Benický (955) · Loukas Benard (3153) · Charles Primard (6279) · Rafal Skorupa (31695)</p><p class="nt">純近戰 mirror。Rendmaster 疊傷 + Karanak 獵 Khârn/MoE/Lord Invocatus。Angron 唔好硬碰 —— Flesh Hounds 引位再側擊。</p></div><div class="blk"><h3>SM <span class="n">6</span></h3><p class="nm">Pedro Astrategas (970) · Anthony Maugé (1340) · Martin Petriscak (4115) · moritz Klima (8560) · Debliquy Cameron (Celesx) (10426) · Mike Hodges (22478)</p><p class="nt">Calgar+Guilliman+10 隻 4++ Terminator。唔好正面衝 blob，Karanak 先殺 Guilliman。Pedro Astrategas（Stormlance speeder）最難。</p></div><div class="blk"><h3>Nec <span class="n">5</span></h3><p class="nm">Steven Ross (204) · Clément Galland (2205) · Eetu Peltola (2394) · Adrien Jerphagnon (Woyd) (17713) · Francesco Di Bonaventura (44128)</p><p class="nt">Lokhust 射擊 + C'tan。C'tan 唔打，先殺 Heavy Destroyer > Hexmark，靠 mission 偷分。</p></div><div class="blk"><h3>Cust <span class="n">4</span></h3><p class="nm">Riley Morris (266) · Samuel Young (3547) · Lucas McQueeney (4515) · Jasper Lange (22991)</p><p class="nt">Caladius Grav-Tank 先殺（唯一穩定殺你 Thirster 嘅嘢）。Telemon 用 Flesh Hounds 鎖住，其餘搶 objective。</p></div><div class="blk"><h3>DG <span class="n">4</span></h3><p class="nm">Igor Bourjac (1060) · Alexandre Turco (4568) · Jakub Ovecka (28325) · Stephen Walker</p><p class="nt">3× Myphitic Blight-hauler（6 支 melta）必先清。Mortarion 減傷，用 Skarbrand 高 D 值，唔好用 Bloodthirster。</p></div><div class="blk"><h3>Ork <span class="n">4</span></h3><p class="nm">Will Paul (650) · John Stavroulakis (3733) · Alberto Nicolas &quot;The Carthaginian&quot; (10490) · Mattias Levin (14243)</p><p class="nt">Green Tide = 120 隻 Boyz，唔好逐隻清，控圖。Weirdboy 必殺。機械化先殺 Wazbom。</p></div><div class="blk"><h3>Nid <span class="n">4</span></h3><p class="nm">Marek Vlnka (420) · Hugh Mc Cluskey (547) · Davey Liddle (3331) · Xavo Melenero L&#x27;Escamarlà (5235)</p><p class="nt">Exocrine / Maleceptor 先殺。Hormagaunt 海用 Bloodcrushers。留意 Subterranean Assault 偷後場。</p></div><div class="blk"><h3>Tau <span class="n">3</span></h3><p class="nm">Brett Smith (31) · Leo Pageon (826) · Josh Tyler (1836)</p><p class="nt">最差 matchup。Crisis Sunforge（melta）必殺。Bloodthirster 唔好單獨 deep strike，要 Flesh Hounds 先吸 overwatch。</p></div><div class="blk"><h3>CSM <span class="n">3</span></h3><p class="nm">Ed Watts (181) · Thomas Cowan (1394) · Matt Chayba (18682)</p><p class="nt">Ed Watts（2 Defiler + 2 Venomcrawler）最硬，Defiler 先。Terminator 4++ 用 Skarbrand。</p></div><div class="blk"><h3>GK <span class="n">3</span></h3><p class="nm">Garrett Befera (285) · Matthew Wood (462) · J Sawlaw (804)</p><p class="nt">Purifier flamer → overwatch 對你大隻係災難，12"+ 外 charge。GMNDK 先殺。</p></div><div class="blk"><h3>SW <span class="n">3</span></h3><p class="nm">Aidan Brocklehurst (461) · Gil Dias (3271) · Petros Kazas</p><p class="nt">Eliminator 有 anti-character（小心 Karanak）。Gil Dias 有 2 Eradicator melta 先殺。其餘近戰你贏。</p></div><div class="blk"><h3>IK <span class="n">2</span></h3><p class="nm">Luis Stiemerling (85) · Giri {°_°} (292)</p><p class="nt">Luis：5 隻 knight 冇 scoring，三打一逐隻拆。Giri：2 Castellan 長程炮，最難，靠 terrain 埋身。</p></div><div class="blk"><h3>Vot <span class="n">2</span></h3><p class="nm">Mathieu Clerc (93) · Quentin Roché (2017)</p><p class="nt">Mathieu Clerc：3× Thunderkyn（D3 反大）必殺。Quentin 近戰型，你贏。</p></div><div class="blk"><h3>Ael <span class="n">2</span></h3><p class="nm">Thomas Faulkner (167) · Roberto Gaiba (6052)</p><p class="nt">Fire Prism / Fire Dragon 先殺。Thomas Faulkner 6 個 character = Karanak 大餐。</p></div><div class="blk"><h3>DA <span class="n">2</span></h3><p class="nm">Juuso Sipiläinen (934) · Roger Borras (2095)</p><p class="nt">Juuso：3× Land Speeder Vengeance speeder 型（同你打慣嘅一樣，先拆 Vengeance）。Roger 慢，你贏。</p></div><div class="blk"><h3>TS <span class="n">2</span></h3><p class="nm">Pavel Samsonov (6971) · Gasper Dular (12924)</p><p class="nt">Magnus 必先殺，Karanak 追 Sorcerer。</p></div><div class="blk"><h3>Dae <span class="n">2</span></h3><p class="nm">Niklas Fritschen (320) · Lara Silva (4310)</p><p class="nt">Niklas（同 detachment，五神混合）：你純 Khorne 近戰贏，佢冇 Rendmaster 疊傷。Lara（3 LoC 全 psychic）係差 matchup。</p></div><div class="blk"><h3>DW <span class="n">1</span></h3><p class="nm">Jeff Cope (229)</p><p class="nt">2× DW Terminator + Fortis + Indomitor，4++ 人海，磨。</p></div><div class="blk"><h3>Sor <span class="n">1</span></h3><p class="nm">Joel Gállego (602)</p><p class="nt">Vahl + Paragon 先殺（Paragon 反大），Immolator/Dominion flamer overwrite 要小心。</p></div><div class="blk"><h3>AdM <span class="n">1</span></h3><p class="nm">Maxwell Lawrence (11563)</p><p class="nt">3× Skorpius Disintegrator 先殺。</p></div></div>
+</body></html>
